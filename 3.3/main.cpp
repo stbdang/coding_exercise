@@ -5,6 +5,7 @@
 
 class stack_node 
 {
+ public:
   stack_node();
   int push(int val);
   int pop(int& val);
@@ -18,12 +19,12 @@ class stack_node
  private:
   int data[NUM_ELEM];
   int count;
-}
+};
 
 stack_node::stack_node()
   : next(NULL)
   , prev(NULL)
-  , count(0);
+  , count(0)
 {
 
 }
@@ -69,7 +70,7 @@ class MultiStack
  private:
   stack_node* head;
   stack_node* current_stack;
-}
+};
 
 MultiStack::MultiStack()
   : head (new stack_node)
@@ -81,8 +82,8 @@ MultiStack::~MultiStack()
 {
   while(head) {
     stack_node* toBeDeleted = head;
-    delete toBeDeleted;
     head = head->next;
+    delete toBeDeleted;
   }
 }
 
@@ -100,4 +101,47 @@ int MultiStack::push(int val)
 
 }
 
-int Mu
+int MultiStack::pop(int& val)
+{
+  if (current_stack->empty()) // need to delete and move to the earlier stack node
+  {
+    if (current_stack == head) // Can't remove as this is the head node
+    {
+      return -1;
+    }
+    stack_node* toBeDeleted = current_stack;
+    current_stack = current_stack->prev;
+    current_stack->next = NULL;
+    delete toBeDeleted;
+  }
+
+  return current_stack->pop(val);
+}
+
+int main()
+{
+  MultiStack myStack;
+
+  myStack.push(0); 
+  myStack.push(1); 
+  myStack.push(2); 
+  myStack.push(3); 
+  myStack.push(4); 
+  myStack.push(5); 
+  myStack.push(6); 
+  myStack.push(7); 
+  myStack.push(8); 
+  myStack.push(9); 
+  myStack.push(10); 
+  myStack.push(11); 
+
+  int val;
+  while (myStack.pop(val) == 0)
+  {
+    std::cout << val << std::endl;
+  }
+
+  return 0;
+}
+
+
