@@ -1,0 +1,6 @@
+5.4
+
+((n & (n-1)) == 0)
+
+This only happens when the number is in the format 1000.....0 so n-1 becomes 0111.....1
+1000.....0 is always the power of 2.
