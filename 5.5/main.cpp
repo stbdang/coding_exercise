@@ -23,7 +23,7 @@ void printBinary(int num, std::string& out)
 int main()
 {
   int num1 = 101;
-  int num2 = 13;
+  int num2 = 100;
 
   std::string meh;
   std::string meh2;
