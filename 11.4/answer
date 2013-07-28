@@ -1,0 +1,9 @@
+11.4 Imaging you have 20 GB file with one string per line. Explain how you would sort the file.
+
+Answer : Hmm...the first thing that comes to my mind would be do a "divide and conquer" It maybe doable to divide files in chunks that can fit into memory and sort the chunk. Once we are done with chunks, we can somewhat merge them. The problem is that merging might be impossible due to the large size.
+
+I guess we can divide the files into chunks that are somewhat "categorized" so that any string that starts with "a" are collected to a bin for sorting. The advantage of this approach is that we do not need to merge the chunks once we are done with the sorting. The issue here is that there is no way for us to guarantee that each category will fit into the maximum size allowed for a chunk (e.g. the file might contain too many strings that starts with "a").
+
+Maybe a mixture of method 1 and 2 might work. We categorize them first then divide into chunks if the chunk is too big.
+
+ 
