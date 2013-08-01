@@ -1,4 +1,5 @@
 #include <iostream>
+
 /* 11.6 Find an element in an M x N 2D array, sorted in rows and columns
 
   This is an essentially the same problem as finding an element in an 1D array. 
@@ -23,6 +24,12 @@
   
 
   HINT : First and Last (min and max)
+
+  If the first item on a row is larger than the element we are looking for, we know we can discard the whole row since it's the smallest elem in a row.
+
+  Convesely, if the last item is smaller than the one we are searching, we can discard the whole row as well. (And all rows above)
+
+  What if, 
 
 */
 
