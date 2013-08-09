@@ -1,4 +1,5 @@
 #include <iostream>
+#include <map>
 
 struct Node
 {
@@ -32,6 +33,30 @@ void append(Node* head, Node* newNode)
 //  Node* head;
 //  int length;
 //}
+
+void removeDupSmarter(Node* head)
+{
+  std::map<int, bool> myMap;
+
+  Node* cursor = head;
+  Node* prev = NULL;
+  while(cursor) {
+    if (myMap.find(cursor->val) == myMap.end()) //not found
+    {
+      myMap.insert(std::pair<int, bool>(cursor->val, true));
+    } else { // remove cursor
+      Node* elemToBeDeleted = cursor;
+      prev->next = cursor->next;
+      cursor = cursor->next;
+      delete elemToBeDeleted;
+      continue;
+    }    
+
+    prev = cursor;
+    cursor = cursor->next;
+  }
+
+}
 
 void removeDuplicates(Node* head)
 {
@@ -91,7 +116,8 @@ int main()
   //append(head, new Node(1));  
   //append(head, new Node(1));  
 
-  removeDuplicates(head);
+  //removeDuplicates(head);
+  removeDupSmarter(head);
   printList(head);
 
   return 0;

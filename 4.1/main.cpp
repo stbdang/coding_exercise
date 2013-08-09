@@ -62,6 +62,30 @@ int checkIfBalanced(Node* root)
   return runTree(root, depth);
 }
 
+int checkHeightOfBalanced(Node* root)
+{
+// return : height (-1 is unbalanced)
+  int leftHeight;
+  int rightHeight;  
+
+  if (!root->left && !root->right)
+  {  return 0; }
+
+  if (root->left) {
+    leftHeight = checkHeightOfBalanced(root->left);
+    leftHeight++;
+  }
+
+  if (root->right) {
+    rightHeight = checkHeightOfBalanced(root->right);
+    rightHeight++;
+  }
+
+  if ( std::abs(rightHeight - leftHeight) > 1 )
+    return -1;
+
+  return std::max(rightHeight, leftHeight);
+}
 
 int main()
 {
@@ -88,6 +112,7 @@ int main()
   node6->right = node9;
 
   std::cout << "This tree is " << ((checkIfBalanced(root) < 0) ? "not balanced" : "balanced") << std::endl;
+  std::cout << "This tree is " << ((checkHeightOfBalanced(root) < 0) ? "not balanced" : "balanced") << std::endl;
     
   return 0;
 }

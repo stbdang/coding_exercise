@@ -11,6 +11,11 @@ void printMat(int val[10][10])
 
 }
 
+/* 1 2  ->  1 3     1 2 3    1 4 7
+   3 4      2 4     4 5 6    2 5 8
+                    7 8 9    3 6 9
+*/
+
 void swapRowAndCol(int input[10][10])
 {
   for (int i = 0; i < 10; i++ ) {
